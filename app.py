@@ -21,7 +21,7 @@ class Transaction(db.Model):
 
     def __init__(self, date_time, type, account, currency, amount, category, comment):
         self.date_time = datetime.now()
-
+        #to be continued
 
 
 @app.route("/home")
