@@ -20,8 +20,13 @@ class Transaction(db.Model):
     comment = db.Column(db.String(100))
 
     def __init__(self, date_time, type, account, currency, amount, category, comment):
-        self.date_time = datetime.now()
-        #to be continued
+        self.date_time = date_time or datetime.now()
+        self.type = type
+        self.account = account
+        self.currency = currency
+        self.amount = amount
+        self.category = category
+        self.comment = comment
 
 
 @app.route("/home")
