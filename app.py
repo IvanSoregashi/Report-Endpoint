@@ -33,7 +33,7 @@ class Transaction(db.Model):
 
 @app.route("/home")
 def home():
-    return "<h1>Hello!</h1> Main Page!"
+    return render_template("home.html", values=Transaction.query.all())
 
 
 @app.route("/input", methods=["POST", "GET"])
@@ -50,9 +50,8 @@ def input_form():
         tr = Transaction(datetime.now(), type, account, currency, int(amount), category, "Created by web form")
         db.session.add(tr)
         db.session.commit()
-
-        print(Transaction.query.filter_by(currency='kzt').first().account)
         return f"<h4>Transaction received</h4>{type, account, currency, amount, category}"
+
 
 
 if __name__ == "__main__":

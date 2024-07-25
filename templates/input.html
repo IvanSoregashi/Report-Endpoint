@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Flask Form Input</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Input page{% endblock %}
+{% block content %}
     <h1>Input transaction data</h1>
     <form action="/input" method="POST">
         <label for="type">Type:</label><br>
@@ -19,5 +15,4 @@
         <input type="text" id="category" name="category"><br>
         <input type="submit" value="Submit">
     </form>
-</body>
-</html>
+{% endblock %}
