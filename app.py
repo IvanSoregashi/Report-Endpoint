@@ -20,13 +20,15 @@ class Transaction(db.Model):
     comment = db.Column(db.String(100))
 
     def __init__(self, date_time, type, account, currency, amount, category, comment):
-        self.date_time = date_time or datetime.now()
+        self.date_time = date_time
         self.type = type
         self.account = account
         self.currency = currency
         self.amount = amount
         self.category = category
         self.comment = comment
+        # TODO: validation
+
 
 
 @app.route("/home")
@@ -44,8 +46,17 @@ def input_form():
         currency = request.form["currency"]
         amount = request.form["amount"]
         category = request.form["category"]
+        print(datetime.now())
+        tr = Transaction(datetime.now(), type, account, currency, int(amount), category, "Created by web form")
+        db.session.add(tr)
+        db.session.commit()
+
+        print(Transaction.query.filter_by(currency='kzt').first().account)
         return f"<h4>Transaction received</h4>{type, account, currency, amount, category}"
 
 
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
     app.run()
+
