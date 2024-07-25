@@ -3,6 +3,6 @@
 {% block content %}
     <h1>All transactions</h1>
     {% for item in values %}
-        <p>{{item.type}} {{item.account}} {{item.currency}} {{item.amount}} {{item.category}} {{item.comment}}</p>
+        <p>{{item.date_time}} {{item.type}} {{item.account}} {{item.currency}} {{item.amount}} {{item.category}} {{item.comment}}</p>
     {% endfor %}
 {% endblock %}
