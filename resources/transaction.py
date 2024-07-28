@@ -15,7 +15,7 @@ class Transaction(Resource):
 
     def post(self):
         data = Transaction.parser.parse_args()
-
+        print(data)
         transaction = TransactionModel(
             date_time=datetime.fromisoformat(data['date_time']),
             type=data['type'],
@@ -23,7 +23,7 @@ class Transaction(Resource):
             currency=data['currency'],
             amount=data['amount'],
             category=data['category'],
-            comment=data.get('comment', 'transaction by API')
+            comment=data.get('comment') or 'transaction by API'
         )
 
         try:
