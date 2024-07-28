@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.transaction import TransactionModel
+from datetime import datetime
 
 
 class Transaction(Resource):
@@ -16,7 +17,7 @@ class Transaction(Resource):
         data = Transaction.parser.parse_args()
 
         transaction = TransactionModel(
-            date_time=data['date_time'],
+            date_time=datetime.fromisoformat(data['date_time']),
             type=data['type'],
             account=data['account'],
             currency=data['currency'],
@@ -27,7 +28,8 @@ class Transaction(Resource):
 
         try:
             transaction.save_to_db()
-        except:
+        except Exception as e:
+            print(e)
             return {"message": "An error occurred inserting the transaction."}, 500
 
         return {"message": "Transaction created successfully."}, 201

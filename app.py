@@ -4,6 +4,7 @@ from datetime import datetime
 from db import db
 
 from models.transaction import TransactionModel
+from resources.transaction import Transaction
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -14,7 +15,7 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 api = Api(app)
 
 
-#api.add_resource(TransactionModel, "/transaction")
+api.add_resource(Transaction, "/transaction")
 
 
 @app.route("/")
@@ -33,8 +34,15 @@ def input_form():
         amount = request.form["amount"]
         category = request.form["category"]
         print(datetime.now())
-        tr = TransactionModel(datetime.now(), type, account, currency, int(amount), category, "Created by web form")
-        tr.save_to_db()
+        transaction = TransactionModel(
+            datetime.now(),
+            type,
+            account,
+            currency,
+            float(amount),
+            category,
+            "Created by web form")
+        transaction.save_to_db()
         return render_template("home.html", values=TransactionModel.query.all())
 
 
