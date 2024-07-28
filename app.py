@@ -50,9 +50,11 @@ def input_form():
         tr = Transaction(datetime.now(), type, account, currency, int(amount), category, "Created by web form")
         db.session.add(tr)
         db.session.commit()
-        return f"<h4>Transaction received</h4>{type, account, currency, amount, category}"
+        return render_template("home.html", values=Transaction.query.all())
 
-
+@app.route("/transaction")
+def transaction():
+    pass
 
 if __name__ == "__main__":
     with app.app_context():
