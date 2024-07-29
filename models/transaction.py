@@ -9,7 +9,7 @@ class TransactionModel(db.Model):
     type = db.Column(db.String(20))
     account = db.Column(db.String(20))
     currency = db.Column(db.String(3))
-    amount = db.Column(db.Integer)
+    amount = db.Column(db.Float(precision=2))
     category = db.Column(db.String(50))
     comment = db.Column(db.String(100))
 

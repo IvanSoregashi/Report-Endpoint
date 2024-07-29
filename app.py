@@ -1,8 +1,8 @@
 from flask import Flask, request, render_template
 from flask_restful import Api
 from datetime import datetime
-from db import db
 
+from db import db
 from models.transaction import TransactionModel
 from resources.transaction import Transaction
 
@@ -50,8 +50,9 @@ if __name__ == "__main__":
     db.init_app(app)
 
     if app.config['DEBUG']:
-        @app.before_request
         def create_tables():
             with app.app_context():
                 db.create_all()
+
     app.run()
+    #app.run(host="0.0.0.0")
