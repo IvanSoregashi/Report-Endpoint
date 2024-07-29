@@ -1,4 +1,4 @@
-from tests.base_test import BaseTest
+from tests.system.base_system_test import BaseTest
 
 
 class TestHome(BaseTest):
@@ -7,4 +7,3 @@ class TestHome(BaseTest):
             response = c.get("/")
 
             self.assertEqual(response.status_code, 200)
-            #self.assertEqual(response.title, "Home page")
