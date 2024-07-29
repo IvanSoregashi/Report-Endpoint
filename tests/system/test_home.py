@@ -1,4 +1,4 @@
-from tests.system.base_system_test import BaseTest
+from tests.base_test import BaseTest
 
 
 class TestHome(BaseTest):

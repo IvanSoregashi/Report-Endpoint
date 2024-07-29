@@ -23,6 +23,10 @@ class TransactionModel(db.Model):
         self.comment = comment
         # add validation
 
+    @classmethod
+    def find_by_date(cls, date):
+        return cls.query.filter_by(date_time=date).first()
+
     def json(self):
         return {
              'date_time': self.date_time,

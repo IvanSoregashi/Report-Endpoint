@@ -47,7 +47,7 @@ def input_form():
 
 
 if __name__ == "__main__":
-    db.init_app(app)
+    #db.init_app(app)
 
     if app.config['DEBUG']:
         def create_tables():
