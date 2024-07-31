@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "5ea11752-6ca9-46c3-abcb-2ca3845f898b",
+		"name": "_transaction",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24023927"
+	},
+	"item": [
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "POST Transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () { pm.responseTime < 200 });\r",
+									"pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });\r",
+									"pm.test(\"Response message is proper\", function () { \r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.message).to.eql(\"Transaction created successfully.\");\r",
+									"    });\r",
+									"pm.test(\"Response success is proper\", function () { \r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.success).to.eql(true);\r",
+									"    });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date_time\": \"{{datetime}}\",\r\n    \"type\": \"Expense\",\r\n    \"account\": \"forte_last\",\r\n    \"currency\": \"kzt\",\r\n    \"amount\": 555.1,\r\n    \"category\": \"Groceries\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/transaction",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "content-type",
+									"value": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET LAST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () { pm.responseTime < 200 });\r",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+									"pm.test(\"Response datetime is the same as was POSTed\", function () { \r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.date_time).to.eql(pm.collectionVariables.get(\"datetime\"));\r",
+									"    });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/last-transaction"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE LAST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () { pm.responseTime < 200 });\r",
+									"pm.test(\"Status code is 202\", function () { pm.response.to.have.status(202); });\r",
+									"pm.test(\"Response success is proper\", function () { \r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.success).to.eql(true);\r",
+									"    });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{url}}/last-transaction"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:5000",
+			"type": "string"
+		},
+		{
+			"key": "datetime",
+			"value": "2024-07-28 20:16:26.114441",
+			"type": "string"
+		}
+	]
+}

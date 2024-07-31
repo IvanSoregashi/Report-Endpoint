@@ -43,7 +43,7 @@ class TestModel(TestCase):
             "TEST_COMMENT")
 
         expected = {
-            'date_time': date_time,
+            'date_time': str(date_time),
             'type': 'TEST_TYPE',
             'account': 'TEST_ACCOUNT',
             'currency': 'TEST_CURRENCY',

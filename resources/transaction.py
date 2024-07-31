@@ -29,7 +29,6 @@ class Transaction(Resource):
         try:
             transaction.save_to_db()
         except Exception as e:
-            print(e)
             return {"success": False, "message": str(e)}, 500
 
         return {"success": True, "message": "Transaction created successfully."}, 201
