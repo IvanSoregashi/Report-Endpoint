@@ -7,8 +7,7 @@ and makes sure that it is a new, blank database each time.
 """
 
 from unittest import TestCase
-from app import app
-from db import db
+from app import app, db
 
 
 class BaseTest(TestCase):
@@ -16,8 +15,6 @@ class BaseTest(TestCase):
     def setUpClass(cls):
         app.config['DEBUG'] = False
         app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///"
-        with app.app_context():
-            db.init_app(app)
 
     def setUp(self):
         with app.app_context():

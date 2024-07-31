@@ -29,7 +29,7 @@ class TransactionModel(db.Model):
 
     def json(self):
         return {
-             'date_time': self.date_time,
+             'date_time': str(self.date_time),
              'type': self.type,
              'account': self.account,
              'currency': self.currency,

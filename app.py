@@ -4,6 +4,7 @@ from datetime import datetime
 
 from db import db
 from models.transaction import TransactionModel
+from resources.last_transaction import LastTransaction
 from resources.transaction import Transaction
 
 app = Flask(__name__)
@@ -13,9 +14,11 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 
 api = Api(app)
+db.init_app(app)
 
 
 api.add_resource(Transaction, "/transaction")
+api.add_resource(LastTransaction, "/last-transaction")
 
 
 @app.route("/")
@@ -47,12 +50,7 @@ def input_form():
 
 
 if __name__ == "__main__":
-    #db.init_app(app)
-
-    if app.config['DEBUG']:
-        def create_tables():
-            with app.app_context():
-                db.create_all()
-
+    with app.app_context():
+        db.create_all()
     app.run()
     #app.run(host="0.0.0.0")
