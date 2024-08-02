@@ -1,15 +1,15 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 from behave import *
 
 use_step_matcher('re')
 
 
-@given('I am on input page')
-def step_impl(context):
-    chrome_service = Service(executable_path='chromedriver')
-    chrome_options = Options()
-    chrome_options.add_argument("--disable-extensions")
-    browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
-    browser.get('http://127.0.0.1:5000/input')
+@when("I input '(.*)' as '(.*)'")
+def step_impl(context, field_id, value):
+    field = context.browser.find_element(By.ID, field_id)
+    field.send_keys(value)
+
+@when("I click '(.*)'")
+def step_impl(context, button_id):
+    button = context.browser.find_element(By.ID, button_id)
+    button.click()

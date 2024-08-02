@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 from flask_restful import Api
 from datetime import datetime
 
@@ -46,8 +46,8 @@ def input_form():
             category,
             "Created by web form")
         transaction.save_to_db()
-        return render_template("home.html", values=TransactionModel.query.all())
-
+        #return render_template("home.html", values=TransactionModel.query.all())
+        return redirect(url_for("home"))
 
 if __name__ == "__main__":
     with app.app_context():

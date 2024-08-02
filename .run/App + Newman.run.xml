@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="App + Newman" type="Multirun" separateTabs="false" reuseTabsWithFailures="false" startOneByOne="true" markFailedProcess="true" hideSuccessProcess="false" delayTime="0.0">
+    <runConfiguration name="app" type="Python" />
+    <runConfiguration name="Newman" type="Shell Script" />
+    <method v="2" />
+  </configuration>
+</component>
