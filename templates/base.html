@@ -20,10 +20,15 @@
             text-align: center;
         }
     </style>
-    {% block head %}{% endblock %}
+    <script>
+    window.onload = function() {
+        setTimeout(function () { document.getElementById('content').style.display = 'block'; },
+        1000);
+    };
+    </script>
 </head>
 <body>
-    <div class="container" id="content">
+    <div class="container" id="content" style="display: none">
         {% block content %}{% endblock %}
     </div>
 </body>
