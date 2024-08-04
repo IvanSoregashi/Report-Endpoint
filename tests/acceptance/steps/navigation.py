@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from behave import *
 
-from tests.acceptance.page_model.base_page import InputPage, HomePage
+from tests.acceptance.page_model.page_models import InputPage, HomePage
 
 use_step_matcher('re')
 

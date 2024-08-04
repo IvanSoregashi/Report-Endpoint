@@ -8,3 +8,7 @@ class BasePageLocators:
 
 class HomePageLocators(BasePageLocators):
     pass
+
+class InputPageLocators(BasePageLocators):
+    TRANSACTION_FORM = By.ID, "transaction-form"
+    SUBMIT_BUTTON = By.ID, "submit"

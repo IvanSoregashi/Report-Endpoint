@@ -2,7 +2,7 @@
 {% block title %}Input page{% endblock %}
 {% block content %}
     <h1>Input transaction data</h1>
-    <form action="/input" method="POST">
+    <form action="/input" method="POST" id="transaction-form">
         <label for="type">Type:</label><br>
         <input type="text" id="type" name="type"><br>
         <label for="account">Account:</label><br>

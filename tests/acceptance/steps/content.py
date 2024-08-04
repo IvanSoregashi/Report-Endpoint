@@ -1,5 +1,5 @@
 from behave import *
-from tests.acceptance.page_model.base_page import BasePage
+from tests.acceptance.page_model.page_models import BasePage
 
 use_step_matcher('re')
 

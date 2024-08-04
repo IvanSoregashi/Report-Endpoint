@@ -1,4 +1,4 @@
-from tests.acceptance.locators.page_locators import BasePageLocators, HomePageLocators
+from tests.acceptance.locators.page_locators import BasePageLocators, HomePageLocators, InputPageLocators
 
 
 class BasePage:
