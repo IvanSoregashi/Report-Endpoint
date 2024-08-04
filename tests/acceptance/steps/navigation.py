@@ -3,20 +3,37 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from behave import *
 
+from tests.acceptance.page_model.base_page import InputPage, HomePage
+
 use_step_matcher('re')
+
+
+def get_chromedriver():
+    chrome_service = Service(
+        executable_path=r'C:\Users\Shyryaev\PycharmProjects\FlaskEndpointAutotesting\tests\acceptance\steps\chromedriver.exe')
+    chrome_options = Options()
+    return webdriver.Chrome(service=chrome_service, options=chrome_options)
 
 
 @given("I am on 'input' page")
 def step_impl(context):
-    chrome_service = Service(
-        executable_path=r'C:\Users\Shyryaev\PycharmProjects\FlaskEndpointAutotesting\tests\acceptance\steps\chromedriver.exe')
-    chrome_options = Options()
-    context.browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
-    context.browser.get("http://127.0.0.1:5000/input")
+    context.driver = get_chromedriver()
+    page = InputPage(context.driver)
+    context.driver.get(page.url)
+
+
+@given("I am on 'home' page")
+def step_impl(context):
+    context.driver = get_chromedriver()
+    page = HomePage(context.driver)
+    context.driver.get(page.url)
 
 
 @then("I am on 'home' page")
 def step_impl(context):
-    expected_url = "http://127.0.0.1:5000/"
-    print(context.browser.current_url)
-    assert context.browser.current_url == expected_url
+    assert context.driver.current_url == HomePage(context.driver).url
+
+@then("Transactions are shown on the page")
+def step_impl(context):
+    page = HomePage(context.driver)
+    assert page.content.is_displayed()

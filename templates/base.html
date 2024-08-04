@@ -20,9 +20,10 @@
             text-align: center;
         }
     </style>
+    {% block head %}{% endblock %}
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="content">
         {% block content %}{% endblock %}
     </div>
 </body>
